@@ -16,13 +16,12 @@ class MyApp extends StatelessWidget {
   }
 }
 
-// Each FAQ item is represented by this simple model
 class FaqItem {
   FaqItem({required this.question, required this.answer}) : isExpanded = false;
 
   final String question;
   final String answer;
-  bool isExpanded; // tracks open/closed state
+  bool isExpanded; 
 }
 
 class FaqScreen extends StatefulWidget {
@@ -33,7 +32,7 @@ class FaqScreen extends StatefulWidget {
 }
 
 class _FaqScreenState extends State<FaqScreen> {
-  // Our list of FAQ data
+// The list 
   final List<FaqItem> _faqs = [
     FaqItem(
       question: 'How do I reset my password?',
@@ -82,3 +81,5 @@ class _FaqScreenState extends State<FaqScreen> {
                   _faqs[index].isExpanded = isExpanded;
                 });
               },
+
+          elevation: 4,
