@@ -21,7 +21,7 @@ class FaqItem {
 
   final String question;
   final String answer;
-  bool isExpanded; 
+  bool isExpanded;
 }
 
 class FaqScreen extends StatefulWidget {
@@ -32,7 +32,7 @@ class FaqScreen extends StatefulWidget {
 }
 
 class _FaqScreenState extends State<FaqScreen> {
-// The list 
+  // The list
   final List<FaqItem> _faqs = [
     FaqItem(
       question: 'How do I reset my password?',
@@ -73,13 +73,29 @@ class _FaqScreenState extends State<FaqScreen> {
               ),
             ),
 
-    
             ExpansionPanelList(
-             
               expansionCallback: (int index, bool isExpanded) {
                 setState(() {
                   _faqs[index].isExpanded = isExpanded;
                 });
               },
 
-          elevation: 4,
+              elevation: 4,
+              //expansion panels
+              expandedHeaderPadding: const EdgeInsets.symmetric(vertical: 4),
+              children: _faqs.map<ExpansionPanel>((FaqItem item) {
+                return ExpansionPanel(
+                  headerBuilder: (BuildContext context, bool isExpanded) {
+                    return ListTile(title: Text(item.question));
+                  },
+                  body: ListTile(title: Text(item.answer)),
+                  isExpanded: item.isExpanded,
+                );
+              }).toList(),
+            ),
+          ],
+        ),
+      ),
+    );
+  }
+}
